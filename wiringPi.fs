@@ -17,6 +17,7 @@ s" wiringPi" add-lib
 \c #include <wiringPiSPI.h>
 \c #include <wiringSerial.h>
 \c #include <wiringShift.h>
+\c #include <softPwm.h>
 
 \ wiringPi modes
 
@@ -179,6 +180,12 @@ c-function serialGetchar serialGetchar n -- n
 
 c-function shiftIn shiftIn n n n -- n
 c-function shiftOut shiftOut n n n n -- void
+
+\ softPwm.h
+
+c-function softPwmCreate softPwmCreate n n n -- n
+c-function softPwmWrite softPwmWrite n n -- void
+c-function softPwmStop softPwmStop n -- void
 
 end-c-library
 
