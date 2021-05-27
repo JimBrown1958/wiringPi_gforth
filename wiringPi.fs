@@ -8,7 +8,7 @@ marker -wiringPi
 
 \ Update this identifier when the API changes, so that Gforth
 \ will build a new cached library.
-c-library wiringPi_2_31_A
+c-library wiringPi_2_60
 
 s" wiringPi" add-lib
 
@@ -18,6 +18,10 @@ s" wiringPi" add-lib
 \c #include <wiringSerial.h>
 \c #include <wiringShift.h>
 \c #include <softPwm.h>
+\c #include <softTone.h>
+\c #include <lcd.h>
+\c #include <pcf8574.h>
+
 
 \ wiringPi modes
 
@@ -58,6 +62,13 @@ s" wiringPi" add-lib
 1 constant INT_EDGE_FALLING
 2 constant INT_EDGE_RISING
 3 constant INT_EDGE_BOTH
+
+\ wiringShift variable
+0 constant LSBFIRST  
+1 constant MSBFIRST
+
+\ LCD constant
+8 constant MAX_LCDS
 
 \ Pi model types and version numbers
 \      Intended for the GPIO program Use at your own risk.
@@ -186,6 +197,33 @@ c-function shiftOut shiftOut n n n n -- void
 c-function softPwmCreate softPwmCreate n n n -- n
 c-function softPwmWrite softPwmWrite n n -- void
 c-function softPwmStop softPwmStop n -- void
+
+\ softTone.h
+
+c-function softToneCreate softToneCreate n -- n
+c-function softToneStop softToneStop n -- void
+c-function softToneWrite softToneWrite n n -- void
+
+\ pcf8574.h
+
+c-function pcf8574Setup pcf8574Setup n n -- n
+
+
+\ lcd.h
+\ Not fully working yet, values are output to screen. 
+\ Commented out for general use until proper fix available
+\ c-function lcdHome lcdHome n -- void
+\ c-function lcdClear lcdClear n -- void
+\ c-function lcdDisplay lcdDisplay n n -- void
+\ c-function lcdCursor lcdCursor n n -- void
+\ c-function lcdCursorBlink lcdCursorBlink n n -- void
+\ c-function lcdSendCommand lcdSendCommand n n -- void
+\ c-function lcdPosition lcdPosition n n n -- void
+\ c-function lcdCharDef lcdCharDef n n a -- void
+\ c-function lcdPutChar lcdPutchar n n -- void
+\ c-function lcdPuts lcdPuts n a -- void
+\ c-function lcdPrintf lcdPrintf n a a -- void
+\ c-function lcdInit lcdInit n n n n n n n n n n n n n -- n
 
 end-c-library
 
